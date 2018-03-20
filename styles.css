@@ -9,6 +9,10 @@
     text-shadow: rgba(0,0,0,.01) 0 0 1px;
 }
 
+genre{
+	display: none;
+}
+
 header_info{
     display: inline-block;
     padding: 15px;
@@ -101,13 +105,6 @@ movie rate::before{         content: "OCENA"; }
 movie director::before{     content: "REŻYSER"; }
 movie duration::before{     content: "CZAS TRWANIA"; }
 movie release_date::before{ content: "EKRANIZACJA"; }
-movie genres::before{       content: "GATUNEK"; }
-
-movie genres genre[value=Action]::before{       content: "Akcja"; }
-movie genres genre[value=Biography]::before{    content: "Biograficzny"; }
-movie genres genre[value=Crime]::before{        content: "Kryminał"; }
-movie genres genre[value=Drama]::before{        content: "Dramat"; }
-movie genres genre[value=Fantasy]::before{      content: "Fantastyczny"; }
 
 
 

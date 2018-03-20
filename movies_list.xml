@@ -2,19 +2,19 @@
 <?xml-stylesheet href="styles.css"?>
 
 <!DOCTYPE top_rated_movies[
-<!ELEMENT top_rated_movies (header_info,rate_based_fracture)>
+<!ELEMENT top_rated_movies (header_info,genres,movies_list)>
 <!ELEMENT header_info (authors)>
 <!ELEMENT authors (author*)>
 <!ELEMENT author (#PCDATA)>
+<!ELEMENT genres (genre*)>
+<!ELEMENT genre (#PCDATA)>
+<!ATTLIST genre id_g ID #REQUIRED>
 <!ELEMENT movies_list (movie*)>
-<!ATTLIST rate value CDATA #REQUIRED>
-<!ELEMENT movie (title,rate,director,genres,duration,release_date)>
-<!ATTLIST movie id ID #REQUIRED>
+<!ELEMENT movie (title,rate,director,duration,release_date)>
+<!ATTLIST movie id_ref IDREF #REQUIRED>
 <!ELEMENT title (#PCDATA)>
 <!ELEMENT rate (#PCDATA)>
 <!ELEMENT director (#PCDATA)>
-<!ELEMENT genres (genre*)>
-<!ATTLIST genre value (Crime|Drama|Fantasy|Action|Biography|Sci-Fi|Adventure|Thriller|History|Romance)  #REQUIRED>
 <!ELEMENT duration (#PCDATA)>
 <!ELEMENT release_date (#PCDATA)>
 ]>
@@ -29,251 +29,178 @@
 		</authors>
 	</header_info>
 
+	<genres>
+		<genre id_g="1">Crime</genre>
+		<genre id_g="2">Drama</genre>
+		<genre id_g="3">Fantasy</genre>
+		<genre id_g="4">Action</genre>
+		<genre id_g="5">Biography</genre>
+		<genre id_g="6">Adventure</genre>
+		<genre id_g="7">Thriller</genre>
+		<genre id_g="8">History</genre>
+		<genre id_g="9">Romance</genre>
+		<genre id_g="10">Western</genre>
+	</genres>
+	
 	<movies_list>
-
-		<movie id="1">
+	
+		<movie id_ref="1">
 			<title>The Shawshank Redemption</title>
-			<rate>9,3</rate>
+			<rate>9.3</rate>
 			<director>Frank Darabont</director>
-			<genres>
-				<genre value="Crime"></genre>
-				<genre value="Drama"></genre>
-			</genres>
 			<duration>2h 22min</duration>
 			<release_date>17.07.1994</release_date>
 		</movie>
 
-		<movie id="2">
+		<movie id_ref="3">
 			<title>The Godfather</title>
-			<rate>9,2</rate>
+			<rate>9.2</rate>
 			<director>Francis Ford Coppola</director>
-			<genres>
-				<genre value="Crime"></genre>
-				<genre value="Drama"></genre>
-			</genres>
 			<duration>2h 55min</duration>
 			<release_date>12.08.1972</release_date>
 		</movie>
 		
-		<movie id="3">
+		<movie id_ref="6">
 			<title>The Godfather: Part II</title>
-			<rate>9,0</rate>
+			<rate>9.0</rate>
 			<director>Francis Ford Coppola</director>
-			<genres>
-				<genre value="Crime"></genre>
-				<genre value="Drama"></genre>
-			</genres>
 			<duration>3h 22min</duration>
 			<release_date>11.09.1974</release_date>
 		</movie>
 
-		<movie id="4">
+		<movie id_ref="8">
 			<title>The Dark Knight</title>
-			<rate>9,0</rate>
+			<rate>9.0</rate>
 			<director>Christopher Nolan</director>
-			<genres>
-				<genre value="Action"></genre>
-				<genre value="Crime"></genre>
-				<genre value="Thriller"></genre>
-			</genres>				
 			<duration>2h 32min</duration>
 			<release_date>06.05.2008</release_date>
 		</movie>
 		
-		<movie id="5">
+		<movie id_ref="1">
 			<title>12 Angry Men</title>
-			<rate>8,9</rate>
+			<rate>8.9</rate>
 			<director>Sidney Lumet</director>
-			<genres>
-				<genre value="Crime"></genre>
-				<genre value="Drama"></genre>
-			</genres>
 			<duration>1h 36min</duration>
 			<release_date>07.10.1957</release_date>
 		</movie>
 
-		<movie id="6">
+		<movie id_ref="2">
 			<title>Schindler's List</title>
-			<rate>8,9</rate>
+			<rate>8.9</rate>
 			<director>Steven Spielberg</director>
-			<genres>
-				<genre value="Biography"></genre>
-				<genre value="History"></genre>
-				<genre value="Drama"></genre>
-			</genres>				
 			<duration>3h 15min</duration>
 			<release_date>17.12.1993</release_date>
 		</movie>
 
-		<movie id="7">
+		<movie id_ref="9">
 			<title>Pulp Fiction</title>
-			<rate>8,9</rate>
+			<rate>8.9</rate>
 			<director>Quentin Tarantino</director>
-			<genres>
-				<genre value="Crime"></genre>
-				<genre value="Drama"></genre>
-			</genres>
 			<duration>2h 34min</duration>
 			<release_date>12.12.1994</release_date>
 		</movie>
 
-		<movie id="8">
+		<movie id_ref="10">
 			<title>The Lord of the Rings: The Return of the King</title>
-			<rate>8,9</rate>
+			<rate>8.9</rate>
 			<director>Peter Jackson</director>
-			<genres>
-				<genre value="Adventure"></genre>
-				<genre value="Fantasy"></genre>
-				<genre value="Drama"></genre>
-			</genres>				
 			<duration>3h 21min</duration>
 			<release_date>22.09.2003</release_date>
 		</movie>
 
-		<movie id="9">
+		<movie id_ref="2">
 			<title>Il buono, il brutto, il cattivo</title>
-			<rate>8,9</rate>
+			<rate>8.9</rate>
 			<director>Sergio Leone</director>
-			<genres>
-				<genre value="Western"></genre>
-			</genres>
 			<duration>2h 41min</duration>
 			<release_date>21.05.1966</release_date>
 		</movie>
 		
-		<movie id="10">
+		<movie id_ref="3">
 			<title>Fight Club</title>
-			<rate>8,8</rate>
+			<rate>8.8</rate>
 			<director>David Fincher</director>
-			<genres>
-				<genre value="Drama"></genre>
-			</genres>	
 			<duration>2h 19min</duration>
 			<release_date>01.04.1999</release_date>
 		</movie>
 
-		<movie id="11">
+		<movie id_ref="1">
 			<title>The Lord of the Rings: The Fellowship of the Ring</title>
-			<rate>8,8</rate>
+			<rate>8.8</rate>
 			<director>Peter Jackson</director>
-			<genres>
-				<genre value="Adventure"></genre>
-				<genre value="Fantasy"></genre>
-				<genre value="Drama"></genre>
-			</genres>	
 			<duration>2h 58min</duration>
 			<release_date>02.05.2001</release_date>
 		</movie>
 
-		<movie id="12">
+		<movie id_ref="6">
 			<title>Forrest Gump</title>
-			<rate>8,8</rate>
+			<rate>8.8</rate>
 			<director>Robert Zemeckis</director>
-			<genres>
-				<genre value="Romance"></genre>
-				<genre value="Drama"></genre>
-			</genres>	
 			<duration>2h 22min</duration>
 			<release_date>04.03.1994</release_date>
 		</movie>
 
-		<movie id="13">
+		<movie id_ref="10">
 			<title>Star Wars: Episode V - The Empire Strikes Back</title>
-			<rate>8,8</rate>
+			<rate>8.8</rate>
 			<director>Irvin Kershner</director>
-			<genres>
-				<genre value="Adventure"></genre>
-				<genre value="Fantasy"></genre>
-				<genre value="Action"></genre>
-			</genres>	
 			<duration>2h 4min</duration>
 			<release_date>15.05.1980</release_date>
 		</movie>
 
-		<movie id="14">
+		<movie id_ref="2">
 			<title>Inception</title>
-			<rate>8,8</rate>
+			<rate>8.8</rate>
 			<director>Christopher Nolan</director>
-			<genres>
-				<genre value="Adventure"></genre>
-				<genre value="Action"></genre>
-				<genre value="Sci-Fi"></genre>
-			</genres>	
 			<duration>2h 28min</duration>
 			<release_date>11.06.2010</release_date>
 		</movie>
 
-		<movie id="15">
+		<movie id_ref="5">
 			<title>The Lord of the Rings: The Two Towers</title>
-			<rate>8,7</rate>
+			<rate>8.7</rate>
 			<director>Peter Jackson</director>
-			<genres>
-				<genre value="Adventure"></genre>
-				<genre value="Fantasy"></genre>
-				<genre value="Drama"></genre>
-			</genres>	
 			<duration>2h 59min</duration>
 			<release_date>04.05.2002</release_date>
 		</movie>
 
-		<movie id="16">
+		<movie id_ref="5">
 			<title>One Flew Over the Cuckoo's Nest</title>
-			<rate>8,7</rate>
+			<rate>8.7</rate>
 			<director>Milos Forman</director>
-			<genres>
-				<genre value="Drama"></genre>
-			</genres>	
 			<duration>2h 13min</duration>
 			<release_date>05.11.1975</release_date>
 		</movie>
 
-		<movie id="17">
+		<movie id_ref="5">
 			<title>Goodfellas</title>
-			<rate>8,7</rate>
+			<rate>8.7</rate>
 			<director>Martin Scorsese</director>
-			<genres>
-				<genre value="Biography"></genre>
-				<genre value="Crime"></genre>
-				<genre value="Drama"></genre>
-			</genres>	
 			<duration>2h 26min</duration>
 			<release_date>14.11.1990</release_date>
 		</movie>
 
-		<movie id="18">
+		<movie id_ref="3">
 			<title>The Matrix</title>
-			<rate>8,7</rate>
+			<rate>8.7</rate>
 			<director>The Wachowski Brothers</director>
-			<genres>
-				<genre value="Action"></genre>
-				<genre value="Sci-Fi"></genre>
-			</genres>	
 			<duration>2h 16min</duration>
 			<release_date>19.08.1999</release_date>
 		</movie>
 
-		<movie id_ref="19">
+		<movie id_ref="8">
 			<title>Shichinin no samurai</title>
-			<rate>8,7</rate>
+			<rate>8.7</rate>
 			<director>Akira Kurosawa</director>
-			<genres>
-				<genre value="Adventure"></genre>
-				<genre value="Drama"></genre>
-			</genres>	
 			<duration>3h 27min</duration>
 			<release_date>22.04.1954</release_date>
 		</movie>
 
 
-		<movie id="20">
+		<movie id_ref="4">
 			<title>Star Wars</title>
-			<rate>8,6</rate>
+			<rate>8.6</rate>
 			<director>George Lucas</director>
-				<genres>
-					<genre value="Adventure"></genre>
-					<genre value="Fantasy"></genre>
-					<genre value="Action"></genre>
-				</genres>
 			<duration>2h 1min</duration>
 			<release_date>27.03.1977</release_date>
 		</movie>
@@ -281,3 +208,4 @@
 	</movies_list>
 
 </top_rated_movies>
+
