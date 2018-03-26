@@ -12,9 +12,9 @@
 <!ELEMENT movies_list (movie*)>
 <!ELEMENT movie (title,rate,director,duration,release_date)>
 <!ATTLIST movie genre_id_ref IDREF #REQUIRED>
-<!ELEMENT titles (#PCDATA)>
-<!ELEMENT title locale_id_ref IDREF #REQUIRED original (true|false) "false">
-<!ATTLIST titles title>
+<!ELEMENT titles (title*)>
+<!ELEMENT title (#PCDATA)>
+<!ATTLIST title locale_id_ref IDREF #REQUIRED original (true|false) "false">
 <!ELEMENT rate (#PCDATA)>
 <!ELEMENT director (#PCDATA)>
 <!ELEMENT duration (#PCDATA)>
@@ -59,7 +59,7 @@
 			<titles>
 				<title locale_id_ref="2" original="true">The Shawshank Redemption</title>
 				<title locale_id_ref="3">Skazani na Shawshank</title>
-			<titles>
+			</titles>
 			<rate>9.3</rate>
 			<director>Frank Darabont</director>
 			<duration>2h 22min</duration>
@@ -147,7 +147,9 @@
 		</movie>
 
 		<movie genre_id_ref="9">
-			<title>Pulp Fiction</title>
+			<titles>
+				<title locale_id_ref="2" original="true">Pulp Fiction</title>
+			</titles>
 			<rate>8.9</rate>
 			<director>Quentin Tarantino</director>
 			<duration>2h 34min</duration>
@@ -159,7 +161,10 @@
 		</movie>
 
 		<movie genre_id_ref="10">
-			<title>The Lord of the Rings: The Return of the King</title>
+			<titles>
+				<title locale_id_ref="1" original="true">The Lord of the Rings: The Return of the King</title>
+				<title locale_id_ref="3">Władca Pierścieni: Powrót Króla</title>
+			</titles>
 			<rate>8.9</rate>
 			<director>Peter Jackson</director>
 			<duration>3h 21min</duration>
@@ -170,7 +175,7 @@
 			</release_date>
 		</movie>
 
-		<movie genre_id_ref="2">
+				<movie genre_id_ref="2">
 			<title>Il buono, il brutto, il cattivo</title>
 			<rate>8.9</rate>
 			<director>Sergio Leone</director>
