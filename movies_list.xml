@@ -11,8 +11,10 @@
 <!ATTLIST genre id_g ID #REQUIRED>
 <!ELEMENT movies_list (movie*)>
 <!ELEMENT movie (title,rate,director,duration,release_date)>
-<!ATTLIST movie id_ref IDREF #REQUIRED>
-<!ELEMENT title (#PCDATA)>
+<!ATTLIST movie genre_id_ref IDREF #REQUIRED>
+<!ELEMENT titles (#PCDATA)>
+<!ELEMENT title locale_id_ref IDREF #REQUIRED original (true|false) "false">
+<!ATTLIST titles title>
 <!ELEMENT rate (#PCDATA)>
 <!ELEMENT director (#PCDATA)>
 <!ELEMENT duration (#PCDATA)>
@@ -44,11 +46,20 @@
 		<genre id_g="9">Romance</genre>
 		<genre id_g="10">Western</genre>
 	</genres>
-	
+
+	<locales>
+		<localeId id_lang="1">en-GB</localeId>
+		<localeId id_lang="2">en-US</localeId>
+		<localeId id_lang="3">pl-PL</localeId>
+	</locales>
+
 	<movies_list>
 	
-		<movie id_ref="1">
-			<title>The Shawshank Redemption</title>
+		<movie genre_genre_id_ref="1">
+			<titles>
+				<title locale_id_ref="2" original="true">The Shawshank Redemption</title>
+				<title locale_id_ref="3">Skazani na Shawshank</title>
+			<titles>
 			<rate>9.3</rate>
 			<director>Frank Darabont</director>
 			<duration>2h 22min</duration>
@@ -59,8 +70,11 @@
 			</release_date>
 		</movie>
 
-		<movie id_ref="3">
-			<title>The Godfather</title>
+		<movie genre_id_ref="3">
+			<titles>
+				<title locale_id_ref="2" original="true">The Godfather</title>
+				<title locale_id_ref="3">Ojciec Chrzestny</title>
+			</titles>
 			<rate>9.2</rate>
 			<director>Francis Ford Coppola</director>
 			<duration>2h 55min</duration>
@@ -71,8 +85,11 @@
 			</release_date>
 		</movie>
 		
-		<movie id_ref="6">
-			<title>The Godfather: Part II</title>
+		<movie genre_id_ref="6">
+			<titles>
+				<title locale_id_ref="2" original="true">The Godfather: Part II</title>
+				<title locale_id_ref="3">Ojciec Chrzestny 2</title>
+			</titles>
 			<rate>9.0</rate>
 			<director>Francis Ford Coppola</director>
 			<duration>3h 22min</duration>
@@ -83,7 +100,11 @@
 			</release_date>
 		</movie>
 
-		<movie id_ref="8">
+		<movie genre_id_ref="8">
+			<titles>
+				<title locale_id_ref="2" original="true">The Dark Knight</title>
+				<title locale_id_ref="3">Mroczny Rycerz</title>
+			</titles>
 			<title>The Dark Knight</title>
 			<rate>9.0</rate>
 			<director>Christopher Nolan</director>
@@ -95,8 +116,11 @@
 			</release_date>
 		</movie>
 		
-		<movie id_ref="1">
-			<title>12 Angry Men</title>
+		<movie genre_id_ref="1">
+			<titles>
+				<title locale_id_ref="2" original="true">12 Angry Men</title>
+				<title locale_id_ref="3">Dwunastu Gniewnych Ludzi</title>
+			</titles>
 			<rate>8.9</rate>
 			<director>Sidney Lumet</director>
 			<duration>1h 36min</duration>
@@ -107,8 +131,11 @@
 			</release_date>
 		</movie>
 
-		<movie id_ref="2">
-			<title>Schindler's List</title>
+		<movie genre_id_ref="2">
+			<titles>
+				<title locale_id_ref="2" original="true">Schindler's List</title>
+				<title locale_id_ref="3">Lista Schindler'a</title>
+			</titles>
 			<rate>8.9</rate>
 			<director>Steven Spielberg</director>
 			<duration>3h 15min</duration>
@@ -119,7 +146,7 @@
 			</release_date>
 		</movie>
 
-		<movie id_ref="9">
+		<movie genre_id_ref="9">
 			<title>Pulp Fiction</title>
 			<rate>8.9</rate>
 			<director>Quentin Tarantino</director>
@@ -131,7 +158,7 @@
 			</release_date>
 		</movie>
 
-		<movie id_ref="10">
+		<movie genre_id_ref="10">
 			<title>The Lord of the Rings: The Return of the King</title>
 			<rate>8.9</rate>
 			<director>Peter Jackson</director>
@@ -143,7 +170,7 @@
 			</release_date>
 		</movie>
 
-		<movie id_ref="2">
+		<movie genre_id_ref="2">
 			<title>Il buono, il brutto, il cattivo</title>
 			<rate>8.9</rate>
 			<director>Sergio Leone</director>
@@ -155,7 +182,7 @@
 			</release_date>
 		</movie>
 		
-		<movie id_ref="3">
+		<movie genre_id_ref="3">
 			<title>Fight Club</title>
 			<rate>8.8</rate>
 			<director>David Fincher</director>
@@ -167,7 +194,7 @@
 			</release_date>
 		</movie>
 
-		<movie id_ref="1">
+		<movie genre_id_ref="1">
 			<title>The Lord of the Rings: The Fellowship of the Ring</title>
 			<rate>8.8</rate>
 			<director>Peter Jackson</director>
@@ -179,7 +206,7 @@
 			</release_date>
 		</movie>
 
-		<movie id_ref="6">
+		<movie genre_id_ref="6">
 			<title>Forrest Gump</title>
 			<rate>8.8</rate>
 			<director>Robert Zemeckis</director>
@@ -191,7 +218,7 @@
 			</release_date>
 		</movie>
 
-		<movie id_ref="10">
+		<movie genre_id_ref="10">
 			<title>Star Wars: Episode V - The Empire Strikes Back</title>
 			<rate>8.8</rate>
 			<director>Irvin Kershner</director>
@@ -203,7 +230,7 @@
 			</release_date>
 		</movie>
 
-		<movie id_ref="2">
+		<movie genre_id_ref="2">
 			<title>Inception</title>
 			<rate>8.8</rate>
 			<director>Christopher Nolan</director>
@@ -215,7 +242,7 @@
 			</release_date>
 		</movie>
 
-		<movie id_ref="5">
+		<movie genre_id_ref="5">
 			<title>The Lord of the Rings: The Two Towers</title>
 			<rate>8.7</rate>
 			<director>Peter Jackson</director>
@@ -227,7 +254,7 @@
 			</release_date>
 		</movie>
 
-		<movie id_ref="5">
+		<movie genre_id_ref="5">
 			<title>One Flew Over the Cuckoo's Nest</title>
 			<rate>8.7</rate>
 			<director>Milos Forman</director>
@@ -239,7 +266,7 @@
 			</release_date>
 		</movie>
 
-		<movie id_ref="5">
+		<movie genre_id_ref="5">
 			<title>Goodfellas</title>
 			<rate>8.7</rate>
 			<director>Martin Scorsese</director>
@@ -251,7 +278,7 @@
 			</release_date>
 		</movie>
 
-		<movie id_ref="3">
+		<movie genre_id_ref="3">
 			<title>The Matrix</title>
 			<rate>8.7</rate>
 			<director>The Wachowski Brothers</director>
@@ -263,7 +290,7 @@
 			</release_date>
 		</movie>
 
-		<movie id_ref="8">
+		<movie genre_id_ref="8">
 			<title>Shichinin no samurai</title>
 			<rate>8.7</rate>
 			<director>Akira Kurosawa</director>
@@ -276,7 +303,7 @@
 		</movie>
 
 
-		<movie id_ref="4">
+		<movie genre_id_ref="4">
 			<title>Star Wars</title>
 			<rate>8.6</rate>
 			<director>George Lucas</director>
