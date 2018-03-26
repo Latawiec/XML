@@ -41,6 +41,10 @@ header_info::before {
     content: "AUTORZY";
 }
 
+locales {
+    display: none;
+}
+
 movies_list::before{
     display: block;
     text-align: center;
