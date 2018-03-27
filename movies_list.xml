@@ -2,15 +2,18 @@
 <?xml-stylesheet href="styles.css"?>
 
 <!DOCTYPE top_rated_movies[
-<!ELEMENT top_rated_movies (header_info,genres,movies_list)>
+<!ELEMENT top_rated_movies (header_info,genres,locales,movies_list)>
 <!ELEMENT header_info (authors)>
 <!ELEMENT authors (author*)>
 <!ELEMENT author (#PCDATA)>
 <!ELEMENT genres (genre*)>
 <!ELEMENT genre (#PCDATA)>
 <!ATTLIST genre id_g ID #REQUIRED>
+<!ELEMENT locales (localeId*)>
+<!ELEMENT localeId (#PCDATA)>
+<!ATTLIST localeId id_lang ID #REQUIRED>
 <!ELEMENT movies_list (movie*)>
-<!ELEMENT movie (title,rate,director,duration,release_date)>
+<!ELEMENT movie (titles,rate,director,duration,release_date)>
 <!ATTLIST movie genre_id_ref IDREF #REQUIRED>
 <!ELEMENT titles (title*)>
 <!ELEMENT title (#PCDATA)>
@@ -35,30 +38,32 @@
 	</header_info>
 
 	<genres>
-		<genre id_g="1">Crime</genre>
-		<genre id_g="2">Drama</genre>
-		<genre id_g="3">Fantasy</genre>
-		<genre id_g="4">Action</genre>
-		<genre id_g="5">Biography</genre>
-		<genre id_g="6">Adventure</genre>
-		<genre id_g="7">Thriller</genre>
-		<genre id_g="8">History</genre>
-		<genre id_g="9">Romance</genre>
-		<genre id_g="10">Western</genre>
+		<genre id_g="G1">Crime</genre>
+		<genre id_g="G2">Drama</genre>
+		<genre id_g="G3">Fantasy</genre>
+		<genre id_g="G4">Action</genre>
+		<genre id_g="G5">Biography</genre>
+		<genre id_g="G6">Adventure</genre>
+		<genre id_g="G7">Thriller</genre>
+		<genre id_g="G8">History</genre>
+		<genre id_g="G9">Romance</genre>
+		<genre id_g="G10">Western</genre>
 	</genres>
 
 	<locales>
-		<localeId id_lang="1">en-GB</localeId>
-		<localeId id_lang="2">en-US</localeId>
-		<localeId id_lang="3">pl-PL</localeId>
+		<localeId id_lang="L1">en-GB</localeId>
+		<localeId id_lang="L2">en-US</localeId>
+		<localeId id_lang="L3">pl-PL</localeId>
+		<localeId id_lang="L4">es-ES</localeId>		
+		<localeId id_lang="L5">ja-JA</localeId>		
 	</locales>
 
 	<movies_list>
 	
-		<movie genre_genre_id_ref="1">
+		<movie genre_id_ref="G1">
 			<titles>
-				<title locale_id_ref="2" original="true">The Shawshank Redemption</title>
-				<title locale_id_ref="3">Skazani na Shawshank</title>
+				<title locale_id_ref="L2" original="true">The Shawshank Redemption</title>
+				<title locale_id_ref="L3">Skazani na Shawshank</title>
 			</titles>
 			<rate>9.3</rate>
 			<director>Frank Darabont</director>
@@ -70,10 +75,10 @@
 			</release_date>
 		</movie>
 
-		<movie genre_id_ref="3">
+		<movie genre_id_ref="G3">
 			<titles>
-				<title locale_id_ref="2" original="true">The Godfather</title>
-				<title locale_id_ref="3">Ojciec Chrzestny</title>
+				<title locale_id_ref="L2" original="true">The Godfather</title>
+				<title locale_id_ref="L3">Ojciec Chrzestny</title>
 			</titles>
 			<rate>9.2</rate>
 			<director>Francis Ford Coppola</director>
@@ -85,10 +90,10 @@
 			</release_date>
 		</movie>
 		
-		<movie genre_id_ref="6">
+		<movie genre_id_ref="G6">
 			<titles>
-				<title locale_id_ref="2" original="true">The Godfather: Part II</title>
-				<title locale_id_ref="3">Ojciec Chrzestny 2</title>
+				<title locale_id_ref="L2" original="true">The Godfather: Part II</title>
+				<title locale_id_ref="L3">Ojciec Chrzestny 2</title>
 			</titles>
 			<rate>9.0</rate>
 			<director>Francis Ford Coppola</director>
@@ -100,12 +105,11 @@
 			</release_date>
 		</movie>
 
-		<movie genre_id_ref="8">
+		<movie genre_id_ref="G8">
 			<titles>
-				<title locale_id_ref="2" original="true">The Dark Knight</title>
-				<title locale_id_ref="3">Mroczny Rycerz</title>
+				<title locale_id_ref="L2" original="true">The Dark Knight</title>
+				<title locale_id_ref="L3">Mroczny Rycerz</title>
 			</titles>
-			<title>The Dark Knight</title>
 			<rate>9.0</rate>
 			<director>Christopher Nolan</director>
 			<duration>2h 32min</duration>
@@ -116,10 +120,10 @@
 			</release_date>
 		</movie>
 		
-		<movie genre_id_ref="1">
+		<movie genre_id_ref="G1">
 			<titles>
-				<title locale_id_ref="2" original="true">12 Angry Men</title>
-				<title locale_id_ref="3">Dwunastu Gniewnych Ludzi</title>
+				<title locale_id_ref="L2" original="true">12 Angry Men</title>
+				<title locale_id_ref="L3">Dwunastu Gniewnych Ludzi</title>
 			</titles>
 			<rate>8.9</rate>
 			<director>Sidney Lumet</director>
@@ -131,10 +135,10 @@
 			</release_date>
 		</movie>
 
-		<movie genre_id_ref="2">
+		<movie genre_id_ref="G2">
 			<titles>
-				<title locale_id_ref="2" original="true">Schindler's List</title>
-				<title locale_id_ref="3">Lista Schindler'a</title>
+				<title locale_id_ref="L2" original="true">Schindler's List</title>
+				<title locale_id_ref="L3">Lista Schindler'a</title>
 			</titles>
 			<rate>8.9</rate>
 			<director>Steven Spielberg</director>
@@ -146,9 +150,9 @@
 			</release_date>
 		</movie>
 
-		<movie genre_id_ref="9">
+		<movie genre_id_ref="G9">
 			<titles>
-				<title locale_id_ref="2" original="true">Pulp Fiction</title>
+				<title locale_id_ref="L2" original="true">Pulp Fiction</title>
 			</titles>
 			<rate>8.9</rate>
 			<director>Quentin Tarantino</director>
@@ -160,10 +164,10 @@
 			</release_date>
 		</movie>
 
-		<movie genre_id_ref="10">
+		<movie genre_id_ref="G10">
 			<titles>
-				<title locale_id_ref="1" original="true">The Lord of the Rings: The Return of the King</title>
-				<title locale_id_ref="3">Władca Pierścieni: Powrót Króla</title>
+				<title locale_id_ref="L1" original="true">The Lord of the Rings: The Return of the King</title>
+				<title locale_id_ref="L3">Władca Pierścieni: Powrót Króla</title>
 			</titles>
 			<rate>8.9</rate>
 			<director>Peter Jackson</director>
@@ -175,8 +179,11 @@
 			</release_date>
 		</movie>
 
-				<movie genre_id_ref="2">
-			<title>Il buono, il brutto, il cattivo</title>
+		<movie genre_id_ref="G2">
+			<titles>
+				<title locale_id_ref="L4" original="true">Il buono, il brutto, il cattivo</title>
+				<title locale_id_ref="L3">Dobry, zły i brzydki</title>
+			</titles>
 			<rate>8.9</rate>
 			<director>Sergio Leone</director>
 			<duration>2h 41min</duration>
@@ -187,8 +194,11 @@
 			</release_date>
 		</movie>
 		
-		<movie genre_id_ref="3">
-			<title>Fight Club</title>
+		<movie genre_id_ref="G3">
+			<titles>
+				<title locale_id_ref="L1" original="true">Fight Club</title>
+				<title locale_id_ref="L3">Podziemny krąg</title>
+			</titles>
 			<rate>8.8</rate>
 			<director>David Fincher</director>
 			<duration>2h 19min</duration>
@@ -199,8 +209,11 @@
 			</release_date>
 		</movie>
 
-		<movie genre_id_ref="1">
-			<title>The Lord of the Rings: The Fellowship of the Ring</title>
+		<movie genre_id_ref="G1">
+			<titles>
+				<title locale_id_ref="L1" original="true">The Lord of the Rings: The Fellowship of the Ring</title>
+				<title locale_id_ref="L3">Władca pierścieni: Drużyna pierścienia</title>
+			</titles>
 			<rate>8.8</rate>
 			<director>Peter Jackson</director>
 			<duration>2h 58min</duration>
@@ -211,8 +224,10 @@
 			</release_date>
 		</movie>
 
-		<movie genre_id_ref="6">
-			<title>Forrest Gump</title>
+		<movie genre_id_ref="G6">
+			<titles>
+				<title locale_id_ref="L1" original="true">Forrest Gump</title>
+			</titles>
 			<rate>8.8</rate>
 			<director>Robert Zemeckis</director>
 			<duration>2h 22min</duration>
@@ -223,8 +238,11 @@
 			</release_date>
 		</movie>
 
-		<movie genre_id_ref="10">
-			<title>Star Wars: Episode V - The Empire Strikes Back</title>
+		<movie genre_id_ref="G10">
+			<titles>
+				<title locale_id_ref="L1" original="true">Star Wars: Episode V - The Empire Strikes Back</title>
+				<title locale_id_ref="L3">Gwiezdne Wojny: Część piąta - Imperium Koontratakuje</title>
+			</titles>
 			<rate>8.8</rate>
 			<director>Irvin Kershner</director>
 			<duration>2h 4min</duration>
@@ -235,8 +253,11 @@
 			</release_date>
 		</movie>
 
-		<movie genre_id_ref="2">
-			<title>Inception</title>
+		<movie genre_id_ref="G2">
+			<titles>
+				<title locale_id_ref="L1" original="true">Inception</title>
+				<title locale_id_ref="L3">Incepcja</title>
+			</titles>
 			<rate>8.8</rate>
 			<director>Christopher Nolan</director>
 			<duration>2h 28min</duration>
@@ -247,8 +268,11 @@
 			</release_date>
 		</movie>
 
-		<movie genre_id_ref="5">
-			<title>The Lord of the Rings: The Two Towers</title>
+		<movie genre_id_ref="G5">
+			<titles>
+				<title locale_id_ref="L1" original="true">The Lord of the Rings: The Two Towers</title>
+				<title locale_id_ref="L3">Władca pierścieni: Dwie wieże</title>
+			</titles>		
 			<rate>8.7</rate>
 			<director>Peter Jackson</director>
 			<duration>2h 59min</duration>
@@ -259,8 +283,11 @@
 			</release_date>
 		</movie>
 
-		<movie genre_id_ref="5">
-			<title>One Flew Over the Cuckoo's Nest</title>
+		<movie genre_id_ref="G5">
+			<titles>
+				<title locale_id_ref="L1" original="true">One Flew Over the Cuckoo's Nest</title>
+				<title locale_id_ref="L3">Lot nad kukułczym gniazdem</title>
+			</titles>	
 			<rate>8.7</rate>
 			<director>Milos Forman</director>
 			<duration>2h 13min</duration>
@@ -271,8 +298,11 @@
 			</release_date>
 		</movie>
 
-		<movie genre_id_ref="5">
-			<title>Goodfellas</title>
+		<movie genre_id_ref="G5">
+			<titles>
+				<title locale_id_ref="L1" original="true">Goodfellas</title>
+				<title locale_id_ref="L3">Chłopcy z ferajny</title>
+			</titles>	
 			<rate>8.7</rate>
 			<director>Martin Scorsese</director>
 			<duration>2h 26min</duration>
@@ -283,8 +313,11 @@
 			</release_date>
 		</movie>
 
-		<movie genre_id_ref="3">
-			<title>The Matrix</title>
+		<movie genre_id_ref="G3">
+			<titles>
+				<title locale_id_ref="L1" original="true">The Matrix</title>
+				<title locale_id_ref="L3">Matrix</title>
+			</titles>	
 			<rate>8.7</rate>
 			<director>The Wachowski Brothers</director>
 			<duration>2h 16min</duration>
@@ -295,8 +328,11 @@
 			</release_date>
 		</movie>
 
-		<movie genre_id_ref="8">
-			<title>Shichinin no samurai</title>
+		<movie genre_id_ref="G8">
+			<titles>
+				<title locale_id_ref="L5" original="true">Shichinin no samurai</title>
+				<title locale_id_ref="L3">Siedmiu samurajów</title>
+			</titles>	
 			<rate>8.7</rate>
 			<director>Akira Kurosawa</director>
 			<duration>3h 27min</duration>
@@ -308,8 +344,11 @@
 		</movie>
 
 
-		<movie genre_id_ref="4">
-			<title>Star Wars</title>
+		<movie genre_id_ref="G4">
+			<titles>
+				<title locale_id_ref="L1" original="true">Star Wars</title>
+				<title locale_id_ref="L3">Gwiezdne Wojny</title>
+			</titles>	
 			<rate>8.6</rate>
 			<director>George Lucas</director>
 			<duration>2h 1min</duration>
