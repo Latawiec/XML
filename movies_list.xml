@@ -28,7 +28,7 @@
 ]>
 
 
-<top_rated_movies>
+<top_rated_movies xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="moviesList.xsd">
 
 	<header_info>
 		<authors>
