@@ -1,75 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.Lukasz_Marzec_i_Nie.com/moviesList" targetNamespace="http://www.Lukasz_Marzec_i_Nie.com/moviesList">
-	<xs:element name="top_rated_movies">
-			<xs:complexType>
-					<xs:sequence>
-						<xs:element name="header_info">
-								<xs:complexType>
-									<xs:element name="authors">
-										<xs:complexType>
-											<xs:sequence>
-												<xs:element name="author" minOccurs="1"/>											
-											</xs:sequence>
-										</xs:complexType>
-									</xs:element>
-								</xs:complexType>
-						</xs:element>
-						<xs:element name="genres">
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="genre" allowedValues: ['Crime','Drama','Fantasy','Action','Biography','Adventure','Thriller','History','Romance','Western']/>
-								</xs:sequence>
-							</xs:complexType>								
-						</xs:element>
-						<xs:element name="locales">
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="localeId"/>
-								</xs:sequence>
-							</xs:complexType>	
-						</xs:element>
-						<xs:element name="movies_list">
-							<xs:complexType>
-								<xs:sequence>
-									<xs:element name="titles">
-										<xs:complexType>
-											<xs:sequence>
-												<xs:element name="title"/>
-											</xs:sequence>
-										</xs:complexType>	
-									</xs:element>
-									<xs:element name="rate"/>
-									<xs:element name="director"/>
-									<xs:element name="duration"/>
-									<xs:element name="release_date">
-										<xs:complexType>
-											<xs:sequence>
-												<xs:element name="day">
-													<xs:simpleType>
-															<xs:restriction base="xs:integer">
-																<xs:minInclusive value="1" />
-																<xs:maxInclusive value="31" />
-															</xs:restriction>
-													</xs:simpleType>
-												</xs:element>
-												<xs:element name="month">
-												<xs:simpleType>
-															<xs:restriction base="xs:integer">
-																<xs:minInclusive value="1" />
-																<xs:maxInclusive value="12" />
-															</xs:restriction>
-													</xs:simpleType>
-												</xs:element>
-												<xs:element name="year" type="xs:integer">
-											</xs:sequence>
-										</xs:complexType>										
-									</xs:element>
-								</xs:sequence>
-							</xs:complexType>	
-						</xs:element>
-					</xs:sequence>
-			</xs:complexType>
-	</xs:element>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="author" type="xs:string"/>
+  <xs:element name="authors">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="author" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="genre">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute type="xs:string" name="id_g" use="optional"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="localeId">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute type="xs:string" name="id_lang" use="optional"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="title">
+    <xs:complexType>
+      <xs:simpleContent>
+        <xs:extension base="xs:string">
+          <xs:attribute type="xs:string" name="locale_id_ref" use="optional"/>
+          <xs:attribute type="xs:string" name="original" use="optional"/>
+        </xs:extension>
+      </xs:simpleContent>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="day" type="xs:byte"/>
+  <xs:element name="month" type="xs:byte"/>
+  <xs:element name="year" type="xs:short"/>
+  <xs:element name="titles">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="title" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="rate" type="xs:float"/>
+  <xs:element name="director" type="xs:string"/>
+  <xs:element name="duration" type="xs:string"/>
+  <xs:element name="release_date">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="day"/>
+        <xs:element ref="month"/>
+        <xs:element ref="year"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="movie">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="titles"/>
+        <xs:element ref="rate"/>
+        <xs:element ref="director"/>
+        <xs:element ref="duration"/>
+        <xs:element ref="release_date"/>
+      </xs:sequence>
+      <xs:attribute type="xs:string" name="genre_id_ref" use="optional"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="header_info">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="authors"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="genres">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="genre" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="locales">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="localeId" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="movies_list">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="movie" maxOccurs="unbounded" minOccurs="0"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="top_rated_movies">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="header_info"/>
+        <xs:element ref="genres"/>
+        <xs:element ref="locales"/>
+        <xs:element ref="movies_list"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 	<xs:attributeGroup name="title_attr">
 		<xs:attribute name="locale_id_ref" type="xs:IDREF" use="required"/>
 		<xs:attribute name="original" type="xs:boolean"/>
