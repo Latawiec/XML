@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.lukasz_marzec_i_niemarzec.buziaczek.pl/locale_t" targetNamespace="http://www.lukasz_marzec_i_niemarzec.buziaczek.pl/locale_t">
+  <!-- Locales -->
+  <xs:simpleType name="localeId_id_t">
+    <xs:restriction base="xs:NCName">
+      <xs:pattern value="L\d+"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="localeId_value_t">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[a-z][a-z]-[A-Z][A-Z]"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="localeId_t">
+    <xs:simpleContent>
+      <xs:extension base="localeId_value_t">
+        <xs:attribute name="id_lang" type="localeId_id_t" use="required"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+</xs:schema>

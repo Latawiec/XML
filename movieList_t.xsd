@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.lukasz_marzec_i_niemarzec.buziaczek.pl/movieList_t" targetNamespace="http://www.lukasz_marzec_i_niemarzec.buziaczek.pl/movieList_t"
+           xmlns:nm="http://www.lukasz_marzec_i_niemarzec.buziaczek.pl/name_t">
+  <!-- Movies List -->
+<xs:import namespace="http://www.lukasz_marzec_i_niemarzec.buziaczek.pl/name_t" schemaLocation="name_t.xsd"/>
+
+  <xs:complexType name="title_t">
+    <xs:simpleContent>
+      <xs:extension base="xs:string">
+        <xs:attribute name="locale_id_ref" type="xs:NCName" use="required"/>
+        <xs:attribute name="original" type="xs:boolean" default="false"/>
+      </xs:extension>
+    </xs:simpleContent>
+  </xs:complexType>
+
+  <xs:simpleType name="rate_t">
+    <xs:restriction base="xs:decimal">
+      <xs:minInclusive value="0"/>
+      <xs:maxInclusive value="10"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="duration_t">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="\d+h \d{1,2}min"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="day_t">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="1"/>
+      <xs:maxInclusive value="31"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="month_t">
+    <xs:restriction base="xs:integer">
+      <xs:minInclusive value="1"/>
+      <xs:maxInclusive value="12"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:simpleType name="year_t">
+    <xs:restriction base="xs:integer">
+      <xs:pattern value="[1-9][0-9]{3}"/>
+    </xs:restriction>
+  </xs:simpleType>
+
+  <xs:complexType name="release_date_t">
+    <xs:sequence>
+      <xs:element name="day" type="day_t" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="month" type="month_t" minOccurs="1" maxOccurs="1"/>
+      <xs:element name="year" type="year_t" minOccurs="1" maxOccurs="1"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="movie_t">
+    <xs:sequence>
+      <xs:element name="titles">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="title" type="title_t" minOccurs="1" maxOccurs="unbounded"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="rate" type="rate_t"/>
+      <xs:element name="director" type="nm:name_t"/>
+      <xs:element name="duration" type="duration_t"/>
+      <xs:element name="release_date" type="release_date_t"/>
+    </xs:sequence>
+    <xs:attribute name="genre_id_ref" type="xs:NCName" use="required"/>
+  </xs:complexType>
+
+</xs:schema>

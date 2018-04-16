@@ -1,33 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <?xml-stylesheet href="styles.css"?>
 
-<!DOCTYPE top_rated_movies[
-<!ELEMENT top_rated_movies (header_info,genres,locales,movies_list)>
-<!ELEMENT header_info (authors)>
-<!ELEMENT authors (author*)>
-<!ELEMENT author (#PCDATA)>
-<!ELEMENT genres (genre*)>
-<!ELEMENT genre (#PCDATA)>
-<!ATTLIST genre id_g ID #REQUIRED>
-<!ELEMENT locales (localeId*)>
-<!ELEMENT localeId (#PCDATA)>
-<!ATTLIST localeId id_lang ID #REQUIRED>
-<!ELEMENT movies_list (movie*)>
-<!ELEMENT movie (titles,rate,director,duration,release_date)>
-<!ATTLIST movie genre_id_ref IDREF #REQUIRED>
-<!ELEMENT titles (title*)>
-<!ELEMENT title (#PCDATA)>
-<!ATTLIST title locale_id_ref IDREF #REQUIRED original (true|false) "false">
-<!ELEMENT rate (#PCDATA)>
-<!ELEMENT director (#PCDATA)>
-<!ELEMENT duration (#PCDATA)>
-<!ELEMENT release_date (day,month,year)>
-<!ELEMENT day (#PCDATA)>
-<!ELEMENT month (#PCDATA)>
-<!ELEMENT year (#PCDATA)>
-]>
-
-
 <top_rated_movies xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="moviesList.xsd">
 
 	<header_info>

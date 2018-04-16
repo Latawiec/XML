@@ -1,23 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema attributeFormDefault="unqualified"
            elementFormDefault="qualified"
-           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:nm="http://www.lukasz_marzec_i_niemarzec.buziaczek.pl/name_t"
+           xmlns:gen="http://www.lukasz_marzec_i_niemarzec.buziaczek.pl/genre_t"
+           xmlns:loc="http://www.lukasz_marzec_i_niemarzec.buziaczek.pl/locale_t"
+           xmlns:mov="http://www.lukasz_marzec_i_niemarzec.buziaczek.pl/movieList_t">
 
-<!-- Authors -->
-  <xs:simpleType name="name_t">
-    <xs:restriction base="xs:string">
-      <xs:pattern value="(\p{Lu}\p{Ll}*)( \p{Lu}\p{Ll}*)*"/>
-    </xs:restriction>
-  </xs:simpleType>
+<xs:import namespace="http://www.lukasz_marzec_i_niemarzec.buziaczek.pl/name_t" schemaLocation="name_t.xsd"/>
+<xs:import namespace="http://www.lukasz_marzec_i_niemarzec.buziaczek.pl/genre_t" schemaLocation="genre_t.xsd"/>
+<xs:import namespace="http://www.lukasz_marzec_i_niemarzec.buziaczek.pl/locale_t" schemaLocation="locale_t.xsd"/>
+<xs:import namespace="http://www.lukasz_marzec_i_niemarzec.buziaczek.pl/movieList_t" schemaLocation="movieList_t.xsd"/>
 
-  <!-- Element -->
+  <!-- Header_info Element -->
   <xs:element name="header_info">
     <xs:complexType>
       <xs:sequence>
         <xs:element name="authors" maxOccurs="1">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="author" type="name_t" minOccurs="1" maxOccurs="unbounded"/>
+              <xs:element name="author" type="nm:name_t" minOccurs="1" maxOccurs="unbounded"/>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -25,26 +27,11 @@
     </xs:complexType>
   </xs:element>
 
-<!-- Genres -->
-  <xs:simpleType name="genreID_t">
-    <xs:restriction base="xs:NCName">
-      <xs:pattern value="G\d+"/>
-    </xs:restriction>
-  </xs:simpleType>
-
-  <xs:complexType name="genre_t">
-    <xs:simpleContent>
-      <xs:extension base="xs:string">
-        <xs:attribute name="id_g" type="genreID_t" use="required"/>
-      </xs:extension>
-    </xs:simpleContent>   
-  </xs:complexType>
-
-  <!-- Element -->
+  <!-- Genres Element -->
   <xs:element name="genres">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="genre" type="genre_t" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="genre" type="gen:genre_t" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
     <xs:unique name="uniqueID_forEachGenre">
@@ -53,32 +40,11 @@
     </xs:unique>
   </xs:element>
 
-<!-- Locales -->
-  <xs:simpleType name="localeId_id_t">
-    <xs:restriction base="xs:NCName">
-      <xs:pattern value="L\d+"/>
-    </xs:restriction>
-  </xs:simpleType>
-  
-  <xs:simpleType name="localeId_value_t">
-    <xs:restriction base="xs:string">
-      <xs:pattern value="[a-z][a-z]-[A-Z][A-Z]"/>
-    </xs:restriction>
-  </xs:simpleType>
-
-  <xs:complexType name="localeId_t">
-    <xs:simpleContent>
-      <xs:extension base="localeId_value_t">
-        <xs:attribute name="id_lang" type="localeId_id_t" use="required"/>
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>
-
-  <!-- Element -->
+  <!-- Locales Element -->
   <xs:element name="locales">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="localeId" type="localeId_t" minOccurs="0" maxOccurs="unbounded"/>
+        <xs:element name="localeId" type="loc:localeId_t" minOccurs="0" maxOccurs="unbounded"/>
       </xs:sequence>
     </xs:complexType>
     <xs:unique name="uniqueID_forEachLocaleId">
@@ -87,80 +53,12 @@
     </xs:unique>
   </xs:element>
 
-<!-- Movies List -->
 
-  <xs:complexType name="title_t">
-    <xs:simpleContent>
-      <xs:extension base="xs:string">
-        <xs:attribute name="locale_id_ref" type="xs:NCName" use="required"/>
-        <xs:attribute name="original" type="xs:boolean" default="false"/>
-      </xs:extension>
-    </xs:simpleContent>
-  </xs:complexType>
-
-  <xs:simpleType name="rate_t">
-    <xs:restriction base="xs:decimal">
-      <xs:minInclusive value="0"/>
-      <xs:maxInclusive value="10"/>
-    </xs:restriction>
-  </xs:simpleType>
-
-  <xs:simpleType name="duration_t">
-    <xs:restriction base="xs:string">
-      <xs:pattern value="\d+h \d{1,2}min"/>
-    </xs:restriction>
-  </xs:simpleType>
-
-  <xs:simpleType name="day_t">
-    <xs:restriction base="xs:integer">
-      <xs:minInclusive value="1"/>
-      <xs:maxInclusive value="31"/>
-    </xs:restriction>
-  </xs:simpleType>
-
-  <xs:simpleType name="month_t">
-    <xs:restriction base="xs:integer">
-      <xs:minInclusive value="1"/>
-      <xs:maxInclusive value="12"/>
-    </xs:restriction>
-  </xs:simpleType>
-
-  <xs:simpleType name="year_t">
-    <xs:restriction base="xs:integer">
-      <xs:pattern value="[1-9][0-9]{3}"/>
-    </xs:restriction>
-  </xs:simpleType>
-
-  <xs:complexType name="release_date_t">
-    <xs:sequence>
-      <xs:element name="day" type="day_t" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="month" type="month_t" minOccurs="1" maxOccurs="1"/>
-      <xs:element name="year" type="year_t" minOccurs="1" maxOccurs="1"/>
-    </xs:sequence>
-  </xs:complexType>
-
-  <xs:complexType name="movie_t">
-    <xs:sequence>
-      <xs:element name="titles">
-        <xs:complexType>
-          <xs:sequence>
-            <xs:element name="title" type="title_t" minOccurs="1" maxOccurs="unbounded"/>
-          </xs:sequence>
-        </xs:complexType>
-      </xs:element>
-      <xs:element name="rate" type="rate_t"/>
-      <xs:element name="director" type="name_t"/>
-      <xs:element name="duration" type="duration_t"/>
-      <xs:element name="release_date" type="release_date_t"/>
-    </xs:sequence>
-    <xs:attribute name="genre_id_ref" type="xs:NCName" use="required"/>
-  </xs:complexType>
-
-  <!-- Element -->
+  <!-- Movie List Element -->
   <xs:element name="movies_list">
     <xs:complexType>
       <xs:sequence>
-        <xs:element name="movie" type="movie_t" maxOccurs="unbounded" minOccurs="0"/>
+        <xs:element name="movie" type="mov:movie_t" maxOccurs="unbounded" minOccurs="0"/>
       </xs:sequence>
     </xs:complexType>
   </xs:element>

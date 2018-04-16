@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://www.lukasz_marzec_i_niemarzec.buziaczek.pl/name_t" targetNamespace="http://www.lukasz_marzec_i_niemarzec.buziaczek.pl/name_t">
+  <!-- Authors -->
+  <xs:simpleType name="name_t">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="(\p{Lu}\p{Ll}*)( \p{Lu}\p{Ll}*)*"/>
+    </xs:restriction>
+  </xs:simpleType>
+</xs:schema>
