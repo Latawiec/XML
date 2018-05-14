@@ -14,10 +14,17 @@ namespace ConsoleApp1
 
             vr.Schemas.Add(null, "../moviesList.xsd");
            // vr.Schemas.Add(null, "Tape.xsd");
-            //vr.ValidationType = ValidationType.Schema;
-            //vr.ValidationEventHandler += new ValidationEventHandler(ValidationHandler);
+            vr.ValidationType = ValidationType.Schema;
+            vr.ValidationEventHandler += new ValidationEventHandler(ValidationHandler);
 
-            while (vr.Read()) ;
+            try
+            {
+                while (vr.Read()) ;
+            }
+            catch (Exception e)
+            {
+
+            }
             Console.WriteLine("Validation finished");
         }
 
