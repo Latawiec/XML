@@ -1,14 +1,7 @@
-<!--<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet
-  version="2.0"
-  xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-  xmlns="http://www.w3.org/1999/xhtml">
-	<xsl:output method="xml" version="1.0" encoding="UTF-8" indent="yes" doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN" 	doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"/>
--->
-
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet version="1.0" 
-xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+ xmlns="http://www.w3.org/1999/xhtml">
 	<xsl:template match="/">
 		<html>
 			<head>
@@ -32,7 +25,7 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
         <div id="movies" class="container">
           <h3>Movies</h3>
           <table border="1" class="table">
-            <tr bgcolor="#fa8072">
+            <tr style="background-color:#fa8072">
               <th style="text-align:left">Nr</th>
               <th style="text-align:left">Title</th>
               <th style="text-align:left">Title PL</th>
@@ -52,8 +45,10 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
         <div id="movies_by_genre" class="container">
           <h3>Movies by genre</h3>
           <table border="1" class="table">
-            <th style="text-align:left">Genres</th>
-            <th style="text-align:left">Titles</th>
+			<tr>
+				<th style="text-align:left">Genres</th>
+				<th style="text-align:left">Titles</th>
+			</tr>
             <xsl:for-each select="//genres/genre">
               <xsl:variable name="ID" select="@id_g"/>
               <xsl:variable name="counter" select="@id_g"/>
@@ -66,12 +61,14 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
             </xsl:for-each>
           </table>
         </div>
-
-				<td>
-					<tr>Email : <a href="mailto:marzecL@tubiedronka.pl">Marzec Łukasz</a></tr>
-					<tr>Email : <a href="mailto:nieMarzec@buziaczek.pl">NieMarzec Łukasz</a></tr>
-				</td>
-
+			<table border="1" class="table2">
+					<tr>
+						<td>Email : <a href="mailto:marzecL@tubiedronka.pl">Marzec Łukasz</a></td>
+					</tr>
+					<tr>
+						<td>Email : <a href="mailto:nieMarzec@buziaczek.pl">NieMarzec Łukasz</a></td>
+					</tr>
+			</table>
 			</body>
 		</html>
 	</xsl:template>
