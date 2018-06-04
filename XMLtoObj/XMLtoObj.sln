@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLtoObj", "XMLtoObj\XMLtoObj.csproj", "{C9386DC9-814B-4650-B5E0-A83D0161D2DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C9386DC9-814B-4650-B5E0-A83D0161D2DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9386DC9-814B-4650-B5E0-A83D0161D2DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9386DC9-814B-4650-B5E0-A83D0161D2DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9386DC9-814B-4650-B5E0-A83D0161D2DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9EDC3AD6-54CF-462A-9A08-64307881CC1C}
+	EndGlobalSection
+EndGlobal
