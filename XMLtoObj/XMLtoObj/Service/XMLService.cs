@@ -10,6 +10,60 @@ namespace XMLtoObj.Service
 {
     public static class XMLService
     {
+        public static void SaveChangesInXML(string path, TopRatedMovies topRatedMovies)
+        {
+            //read old Document
+            TopRatedMovies loadStateFromFile = ReadXml(path); 
+            //read to create new Document
+            XDocument newDocument = XDocument.Load(path);       
+ 
+
+                var root = newDocument.Descendants("authors").FirstOrDefault();
+                root?.Elements().Remove();
+                foreach (var author in topRatedMovies.Authors)
+                {
+                    root?.Add(new XElement("author",author.Name));
+                }
+ 
+                root = newDocument.Descendants("locales").FirstOrDefault();
+                root?.Elements().Remove();
+                foreach (var local in topRatedMovies.Locales)
+                {
+                    root?.Add(new XElement("localeId",new XAttribute("id_lang",local.Id),local.Name));
+                }
+            
+
+
+                root = newDocument.Descendants("genres").FirstOrDefault();
+                root?.Elements().Remove();
+                foreach (var genre in topRatedMovies.Genres)
+                {
+                    root?.Add(new XElement("genre", new XAttribute("id_g", genre.Id), genre.Name));
+                }
+
+
+
+                root = newDocument.Descendants("movies_list").FirstOrDefault();
+                root?.Elements().Remove();
+                foreach (var movie in topRatedMovies.Movies)
+                {
+                    root?.Add(new XElement("movie", new XAttribute("genre_id_ref", movie.Id),
+                        new XElement("titles", movie.Titles.Select(_ => new XElement("title", 
+                                                                        new XAttribute("locale_id_ref",_.LocaleId),
+                                                                        _.Original!=null ? new XAttribute("original",_.Original): null,
+                                                                        _.TitleValue))),
+                        new XElement("rate", movie.Rate),
+                        new XElement("director", movie.Director),
+                        new XElement("duration", movie.Duration),
+                        new XElement("release_date",
+                            new XElement("day", movie.ReleaseDate.Day),
+                            new XElement("month", movie.ReleaseDate.Month),
+                            new XElement("year", movie.ReleaseDate.Year))
+                    ));
+                }
+            
+            newDocument.Save("temporary.xml");
+        }
         public static TopRatedMovies ReadXml(string path)
         {
             //initialize mapper
@@ -53,7 +107,7 @@ namespace XMLtoObj.Service
                     Day = _.Element("day")?.Value,
                     Month = _.Element("month")?.Value,
                     Year = _.Element("year")?.Value,
-                }).Select(mapper.Map<ReleaseDate>).ToList(),
+                }).Select(mapper.Map<ReleaseDate>).FirstOrDefault(),
             }).Select(mapper.Map<Movie>).ToList();
            
             return new TopRatedMovies
