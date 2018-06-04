@@ -10,6 +10,7 @@ namespace XMLtoObj.Models
         public IEnumerable<Title> Titles { get; set; }
         public string Rate { get; set; }
         public string Director { get; set; }
-        public IEnumerable<ReleaseDate> ReleaseDate { get; set; }
+        public string Duration { get; set; }
+        public ReleaseDate ReleaseDate { get; set; }
     }
 }

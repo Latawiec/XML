@@ -13,9 +13,14 @@ namespace XMLtoObj
     {
         static void Main(string[] args)
         {
-     
 
-            var moviesList = XMLService.ReadXml("../movies_list.xml");
+            string path = "../movies_list.xml";
+            var moviesList = XMLService.ReadXml(path);
+            moviesList.Authors.FirstOrDefault().Name = "Adam Malysz";
+            moviesList.Locales.FirstOrDefault().Id = "L7";
+            moviesList.Locales.FirstOrDefault().Name = "Piotru";
+            moviesList.Movies.FirstOrDefault().Rate = "0.0";
+            XMLService.SaveChangesInXML(path, moviesList);
             //StringBuilder result = new StringBuilder();
             //foreach (XElement level1Element in XElement.Load("../movies_list.xml").Elements("level1"))
             //{
