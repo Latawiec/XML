@@ -45,10 +45,10 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
         <div id="movies_by_genre" class="container">
           <h3>Movies by genre</h3>
           <table border="1" class="table">
-			<tr>
-				<th style="text-align:left">Genres</th>
-				<th style="text-align:left">Titles</th>
-			</tr>
+          <tr>
+            <th style="text-align:left">Genres</th>
+            <th style="text-align:left">Titles</th>
+          </tr>
             <xsl:for-each select="//genres/genre">
               <xsl:variable name="ID" select="@id_g"/>
               <xsl:variable name="counter" select="@id_g"/>
