@@ -12,8 +12,6 @@ xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
   <xsl:call-template name="newline"/>
   <xsl:call-template name="movies_by_genre_template"/>   
 
-  <xsl:text> JOM </xsl:text>
-
 </xsl:template>
 
 <xsl:template name="newline">
