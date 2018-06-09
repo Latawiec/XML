@@ -13,7 +13,6 @@ namespace ConsoleApp1
             XmlValidatingReader vr = new XmlValidatingReader(stream, XmlNodeType.Element, null);
 
             vr.Schemas.Add(null, "../moviesList.xsd");
-           // vr.Schemas.Add(null, "Tape.xsd");
             vr.ValidationType = ValidationType.Schema;
             vr.ValidationEventHandler += new ValidationEventHandler(ValidationHandler);
 

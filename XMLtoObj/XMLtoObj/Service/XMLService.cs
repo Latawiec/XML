@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Xml;
 using System.Xml.Linq;
+using System.Xml.Schema;
 using AutoMapper;
 using XMLtoObj.Models;
 
@@ -10,28 +14,29 @@ namespace XMLtoObj.Service
 {
     public static class XMLService
     {
-        public static void SaveChangesInXML(string path, TopRatedMovies topRatedMovies)
+        
+        public static void SaveChangesInXML(string path, string newPath, TopRatedMovies topRatedMovies)
         {
+
             //read old Document
             TopRatedMovies loadStateFromFile = ReadXml(path); 
             //read to create new Document
-            XDocument newDocument = XDocument.Load(path);       
- 
+            XDocument newDocument = XDocument.Load(path);
 
                 var root = newDocument.Descendants("authors").FirstOrDefault();
                 root?.Elements().Remove();
                 foreach (var author in topRatedMovies.Authors)
                 {
-                    root?.Add(new XElement("author",author.Name));
+                    root?.Add(new XElement("author", author.Name));
                 }
- 
+
                 root = newDocument.Descendants("locales").FirstOrDefault();
                 root?.Elements().Remove();
                 foreach (var local in topRatedMovies.Locales)
                 {
-                    root?.Add(new XElement("localeId",new XAttribute("id_lang",local.Id),local.Name));
+                    root?.Add(new XElement("localeId", new XAttribute("id_lang", local.Id), local.Name));
                 }
-            
+
 
 
                 root = newDocument.Descendants("genres").FirstOrDefault();
@@ -48,10 +53,10 @@ namespace XMLtoObj.Service
                 foreach (var movie in topRatedMovies.Movies)
                 {
                     root?.Add(new XElement("movie", new XAttribute("genre_id_ref", movie.Id),
-                        new XElement("titles", movie.Titles.Select(_ => new XElement("title", 
-                                                                        new XAttribute("locale_id_ref",_.LocaleId),
-                                                                        _.Original!=null ? new XAttribute("original",_.Original): null,
-                                                                        _.TitleValue))),
+                        new XElement("titles", movie.Titles.Select(_ => new XElement("title",
+                            new XAttribute("locale_id_ref", _.LocaleId),
+                            _.Original != null ? new XAttribute("original", _.Original) : null,
+                            _.TitleValue))),
                         new XElement("rate", movie.Rate),
                         new XElement("director", movie.Director),
                         new XElement("duration", movie.Duration),
@@ -61,9 +66,43 @@ namespace XMLtoObj.Service
                             new XElement("year", movie.ReleaseDate.Year))
                     ));
                 }
-            
-            newDocument.Save("temporary.xml");
+
+            newDocument.Save(newPath);
         }
+
+        public static Tuple<bool,string> ValidateAgainstSchema(string xmlPath, string schemaPath)
+        {
+            bool result = true;
+            string resultMessage = ""; 
+            FileStream stream = new FileStream(xmlPath, FileMode.Open);
+            XmlValidatingReader vr = new XmlValidatingReader(stream, XmlNodeType.Element, null);
+
+            vr.Schemas.Add(null, schemaPath);
+            vr.ValidationType = ValidationType.Schema;
+            vr.ValidationEventHandler += (sender, args) =>
+            {
+                result = false;
+                resultMessage += args.Message + '\n';
+            };
+            try
+            {
+                while (vr.Read())
+                {
+                }
+            }
+            catch (Exception e)
+            {
+                resultMessage += e.Message + '\n';
+            }
+            finally
+            {
+                vr.Close();
+                stream.Close();
+            }
+
+            return new Tuple<bool, string>(result, resultMessage);
+        }
+
         public static TopRatedMovies ReadXml(string path)
         {
             //initialize mapper
@@ -72,7 +111,6 @@ namespace XMLtoObj.Service
 
             //read document
             XDocument document = XDocument.Load(path);
-
             var authors = document.Descendants("author").Select(genre => new
             {
                 Name = genre.Value,
@@ -110,12 +148,13 @@ namespace XMLtoObj.Service
                 }).Select(mapper.Map<ReleaseDate>).FirstOrDefault(),
             }).Select(mapper.Map<Movie>).ToList();
            
+            
             return new TopRatedMovies
             {
-                Authors = authors,
-                Genres = genres,
-                Locales = locales,
-                Movies = movies
+                Authors = new ObservableCollection<Author>(authors),
+                Genres = new ObservableCollection<Genre>(genres),
+                Locales = new ObservableCollection<Locale>(locales),
+                Movies = new ObservableCollection<Movie>(movies)
             };
         }
     }

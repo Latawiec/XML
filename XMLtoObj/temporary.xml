@@ -3,8 +3,8 @@
 <top_rated_movies xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="moviesList.xsd">
   <header_info>
     <authors>
-      <author>Łukasz Garzec</author>
-      <author>Łukasz Nadarzyński</author>
+      <author>Łukasz Marzec</author>
+      <author>Łukasz Nadarzynski</author>
     </authors>
   </header_info>
   <genres>

@@ -1,0 +1,25 @@
+﻿<Window x:Class="XMLtoObj.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:XMLtoObj.View"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <DataGrid ColumnWidth="*"  Name="DataGrid" Background="Aqua" AutoGenerateColumns="False"/>
+        
+        <StackPanel Grid.Row="1" Margin="0,5" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button Margin="10,0"  Height="30" Click="OpenXML">Open</Button>
+            <Button Margin="10,0"  Height="30" Click="SaveXML">Save</Button>
+            <Button Margin="10,0"  Height="30" Click="GetAuthors">Authors</Button>
+            <Button Margin="10,0"  Height="30" Click="GetGenres">Genres</Button>
+            <Button Margin="10,0"  Height="30" Click="GetLocales">Locales</Button>
+            <Button Margin="10,0"  Height="30" Click="GetMovies">Movies</Button>
+        </StackPanel>
+    </Grid>
+</Window>
