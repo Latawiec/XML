@@ -305,5 +305,19 @@
         <year>1977</year>
       </release_date>
     </movie>
+    <movie genre_id_ref="G3">
+      <titles>
+        <title locale_id_ref="L1" original="True">dad</title>
+        <title locale_id_ref="L3" original="True">sda</title>
+      </titles>
+      <rate>8.9</rate>
+      <director>defefe</director>
+      <duration>2h 1min</duration>
+      <release_date>
+        <day>223</day>
+        <month>12</month>
+        <year>12</year>
+      </release_date>
+    </movie>
   </movies_list>
 </top_rated_movies>
