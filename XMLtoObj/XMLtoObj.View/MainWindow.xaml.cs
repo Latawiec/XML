@@ -21,8 +21,35 @@ namespace XMLtoObj.View
         private readonly string _defaultSavePath = "../../../temporary.xml";
         private readonly string _defaultSchemaPath = "../../../../moviesList.xsd";
 
+        private readonly string _defaultXslPath = "../../../../toHelperXML.xsl";
+        private readonly string _defaultTransformPath = "../../../moviesListHelper.xml";
+
+        private readonly string _defaultXslHtmlPath = "../../../../toXHTML.xsl";
+        private readonly string _defaultTransformHtmlPath = "../../../moviesList.xhtml";
+
+        private readonly string _defaultXslSvgPath = "../../../../toSVG.xsl";
+        private readonly string _defaultTransformSvgPath = "../../../moviesList.svg";
+
+        private readonly string _defaultXslTxtPath = "../../../../toTXT.xsl";
+        private readonly string _defaultTransformTxtPath = "../../../moviesList.txt";
+
+        private void Transform()
+        {
+            XMLService.TransfromXML(_defaultXslPath, _defaultPath, _defaultTransformPath);
+
+            //toHTML
+            XMLService.TransfromXML(_defaultXslHtmlPath, _defaultTransformPath, _defaultTransformHtmlPath);
+
+            //toSVG
+            XMLService.TransfromXML(_defaultXslSvgPath, _defaultTransformPath, _defaultTransformSvgPath);
+        
+            //toTXT
+            XMLService.TransfromXML(_defaultXslTxtPath, _defaultTransformPath, _defaultTransformTxtPath);
+        }
+
         public MainWindow()
         {
+            Transform();
             InitializeComponent();
             var moviesList = XMLService.ReadXml(_defaultPath);
             _moviesList = moviesList;

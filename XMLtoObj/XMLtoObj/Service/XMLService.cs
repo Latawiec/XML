@@ -7,14 +7,23 @@ using System.Text;
 using System.Xml;
 using System.Xml.Linq;
 using System.Xml.Schema;
+using System.Xml.Xsl;
 using AutoMapper;
 using XMLtoObj.Models;
+
 
 namespace XMLtoObj.Service
 {
     public static class XMLService
     {
-        
+        public static void TransfromXML(string xslPath, string xmlPath, string transformedPath)
+        {
+            XslTransform myXslTransform;
+            myXslTransform = new XslTransform();
+            myXslTransform.Load(xslPath);
+            myXslTransform.Transform(xmlPath, transformedPath);
+        }
+
         public static void SaveChangesInXML(string path, string newPath, TopRatedMovies topRatedMovies)
         {
 
