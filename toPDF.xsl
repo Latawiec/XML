@@ -48,6 +48,9 @@
         <!-- Content -->
         <fo:flow flow-name = "xsl-region-body">
           <xsl:call-template name="movies_by_genre"/>
+          <xsl:call-template name="newline"/>
+          <xsl:call-template name="movies_count_by_genre"/>
+          <xsl:call-template name="newline"/>
         </fo:flow>
 
       </fo:page-sequence>
@@ -55,6 +58,16 @@
 
   </xsl:template>
 
+  <!-- Helpers -->
+  <xsl:template name="newline">
+    <fo:block font-size="16px"
+              text-align="left"
+              margin="25">
+      <xsl:text>&#xD;&#xA;</xsl:text>
+    </fo:block>
+  </xsl:template>
+
+  <!-- Movies by Genre -->
   <xsl:template name="movies_by_genre">
     <!-- Table name -->
     <fo:block font-size="16px"
@@ -99,10 +112,11 @@
               </fo:table-cell>
 
               <!-- Movies List -->
-              <fo:table-cell border="solid black">
+              <fo:table-cell>
                 <fo:block>
                   <xsl:for-each select="movie">
-                    <fo:block text-align="center">
+                    <fo:block text-align = "center"
+                              border     = "solid black">
                       <xsl:value-of select="."/>
                     </fo:block>
                   </xsl:for-each>
@@ -116,6 +130,65 @@
       </fo:table>
     </fo:block>
 
+  </xsl:template>
+
+  <!-- Movies count in Genre -->
+  <xsl:template name="movies_count_by_genre">
+    <!-- Table name -->
+    <fo:block font-size="16px"
+              text-align="left"
+              font-family="Segoe UI">
+      <xsl:text>Movies count by genre</xsl:text>
+    </fo:block>
+
+    <fo:block>
+      <fo:table border = "solid black"
+                width  = "100%">
+        <!-- Table header -->
+        <fo:table-header>
+          <fo:table-row>
+            <!-- Genre -->
+            <fo:table-cell>
+              <fo:block font-weight = "bold"
+                        text-align  = "center">
+                Genre
+              </fo:block>
+            </fo:table-cell>
+            <!-- Movies -->
+            <fo:table-cell>
+              <fo:block font-weight = "bold"
+                        text-align  = "center">
+                Movies count
+              </fo:block>
+            </fo:table-cell>
+          </fo:table-row>
+        </fo:table-header>
+
+        <!-- Table content -->
+        <fo:table-body>
+          <xsl:for-each select="//movies_count_by_genre/genre">
+            <xsl:variable name="genreName" select="@name"/>
+            <fo:table-row>
+              <!-- Genre Name -->
+              <fo:table-cell border="solid black">
+                <fo:block text-align="center">
+                  <xsl:value-of select="$genreName"/>
+                </fo:block>
+              </fo:table-cell>
+
+              <!-- Movies List -->
+              <fo:table-cell border="solid black">
+                <fo:block text-align="center">
+                  <xsl:value-of select="."/>
+                </fo:block>
+              </fo:table-cell>
+
+            </fo:table-row>
+          </xsl:for-each>
+        </fo:table-body>
+
+      </fo:table>
+    </fo:block>
   </xsl:template>
 
 </xsl:stylesheet>
