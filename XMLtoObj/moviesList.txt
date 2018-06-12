@@ -1,0 +1,40 @@
+﻿!---Top movies list---!
+
+Movies by genre
+
+Description:
+How many movies are of given genre?
+
+|Genre                                            |Title                                            
+
+----------------------------------------------------------------------------------------------------
+Crime                                             The Shawshank Redemption                          
+                                                  12 Angry Men                                      
+                                                  The Lord of the Rings: The Fellowship of the Ring 
+----------------------------------------------------------------------------------------------------
+Drama                                             Schindler's List                                  
+                                                  Il buono, il brutto, il cattivo                   
+                                                  Inception                                         
+----------------------------------------------------------------------------------------------------
+Fantasy                                           The Godfather                                     
+                                                  Fight Club                                        
+                                                  The Matrix                                        
+----------------------------------------------------------------------------------------------------
+Action                                            Star Wars                                         
+----------------------------------------------------------------------------------------------------
+Biography                                         The Lord of the Rings: The Two Towers             
+                                                  One Flew Over the Cuckoo's Nest                   
+                                                  Goodfellas                                        
+----------------------------------------------------------------------------------------------------
+Adventure                                         The Godfather: Part II                            
+                                                  Forrest Gump                                      
+----------------------------------------------------------------------------------------------------
+History                                           The Dark Knight                                   
+                                                  Shichinin no samurai                              
+----------------------------------------------------------------------------------------------------
+Romance                                           Pulp Fiction                                      
+----------------------------------------------------------------------------------------------------
+Western                                           The Lord of the Rings: The Return of the King     
+                                                  Star Wars: Episode V - The Empire Strikes Back    
+----------------------------------------------------------------------------------------------------
+slabyFilm                                         mojfilm                                           

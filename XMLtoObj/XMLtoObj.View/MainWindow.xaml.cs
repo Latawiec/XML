@@ -17,7 +17,7 @@ namespace XMLtoObj.View
     public partial class MainWindow : Window
     {
         private TopRatedMovies _moviesList;
-        private readonly string _defaultPath = "../../../movies_list.xml";
+        private readonly string _defaultPath = "../../../../movies_list.xml";
         private readonly string _defaultSavePath = "../../../temporary.xml";
         private readonly string _defaultSchemaPath = "../../../../moviesList.xsd";
 
@@ -27,29 +27,23 @@ namespace XMLtoObj.View
         private readonly string _defaultXslHtmlPath = "../../../../toXHTML.xsl";
         private readonly string _defaultTransformHtmlPath = "../../../moviesList.xhtml";
 
-        private readonly string _defaultXslSvgPath = "../../../../toSVG.xsl";
-        private readonly string _defaultTransformSvgPath = "../../../moviesList.svg";
-
         private readonly string _defaultXslTxtPath = "../../../../toTXT.xsl";
         private readonly string _defaultTransformTxtPath = "../../../moviesList.txt";
 
         private void Transform()
         {
-            XMLService.TransfromXML(_defaultXslPath, _defaultPath, _defaultTransformPath);
+            XMLService.TransfromXML(_defaultXslPath, _defaultSavePath, _defaultTransformPath);
 
             //toHTML
             XMLService.TransfromXML(_defaultXslHtmlPath, _defaultTransformPath, _defaultTransformHtmlPath);
 
-            //toSVG
-            XMLService.TransfromXML(_defaultXslSvgPath, _defaultTransformPath, _defaultTransformSvgPath);
-        
             //toTXT
             XMLService.TransfromXML(_defaultXslTxtPath, _defaultTransformPath, _defaultTransformTxtPath);
+
         }
 
         public MainWindow()
         {
-            Transform();
             InitializeComponent();
             var moviesList = XMLService.ReadXml(_defaultPath);
             _moviesList = moviesList;
@@ -77,6 +71,7 @@ namespace XMLtoObj.View
 
             var moviesList = XMLService.ReadXml(_defaultPath);
             _moviesList = moviesList;
+            MessageBox.Show("Wczytano poprawnie wejsciowy XML", "Wczytano");
         }
 
         private void SaveXML(object sender, RoutedEventArgs e)
@@ -93,6 +88,8 @@ namespace XMLtoObj.View
                 else
                 {
                     MessageBox.Show("Plik jest poprawny względem schemy","Zapisano");
+                    Transform();
+                    MessageBox.Show("Wykonano transformacje do XML, XHTML, TXT", "Transformacja");
                 }
             }
             catch (ArgumentException exception)
@@ -165,10 +162,10 @@ namespace XMLtoObj.View
 
             DataGrid.Columns.Add(new DataGridTextColumn { Header = "Title 1", Binding = new Binding("Titles[0].TitleValue") { Mode = BindingMode.TwoWay } });
             DataGrid.Columns.Add(new DataGridComboBoxColumn { Header = "Locale Id", ItemsSource = _moviesList.Locales.Select(x => x.Id).ToList(), SelectedValueBinding = new Binding("Titles[0].LocaleId") { Mode = BindingMode.TwoWay } });
-            DataGrid.Columns.Add(new DataGridCheckBoxColumn { Header = "Original?", Binding = new Binding("Titles[0].Original") { Mode = BindingMode.TwoWay } });
+            DataGrid.Columns.Add(new DataGridTextColumn { Header = "Original?", Binding = new Binding("Titles[0].Original") { Mode = BindingMode.TwoWay } });
             DataGrid.Columns.Add(new DataGridTextColumn { Header = "Title 2", Binding = new Binding("Titles[1].TitleValue") { Mode = BindingMode.TwoWay } });
             DataGrid.Columns.Add(new DataGridComboBoxColumn { Header = "Locale Id", ItemsSource = _moviesList.Locales.Select(x => x.Id).ToList(), SelectedValueBinding = new Binding("Titles[1].LocaleId") { Mode = BindingMode.TwoWay } });
-            DataGrid.Columns.Add(new DataGridCheckBoxColumn { Header = "Original?", Binding = new Binding("Titles[1].Original") { Mode = BindingMode.TwoWay } });
+            DataGrid.Columns.Add(new DataGridTextColumn { Header = "Original?", Binding = new Binding("Titles[1].Original") { Mode = BindingMode.TwoWay } });
             DataGrid.Columns.Add(new DataGridComboBoxColumn { Header = "Genre Id", ItemsSource = _moviesList.Genres.Select(x => x.Id).ToList(), SelectedValueBinding = new Binding("Id") });
             DataGrid.Columns.Add(new DataGridTextColumn { Header = "Rate", Binding = new Binding("Rate") });
             DataGrid.Columns.Add(new DataGridTextColumn { Header = "Director", Binding = new Binding("Director") });
